@@ -32,7 +32,7 @@
                 </div>
                 <select class="w-full pt-2 pr-3 pb-2 pl-3 text-sm tracking-wide leading-relaxed rounded-md border-solid border border-[#52525b] border-opacity-25 h-[2.5rem] max-h-[2.5rem] max-w-[300px] shadow-none font-poppins font-normal focus:outline-none md:max-w-[none] md:col-span-2"
                         name="location">
-                    <option value="">Select location...</option>
+                    <option value="">Select location</option>
                     @foreach($locations as $location)
                         <option @if(($filters['location'] ?? null) === $location) selected
                                 @endif value="{{ $location }}">{{ $location }}</option>
@@ -40,7 +40,7 @@
                 </select>
                 <select class="w-full pt-2 pr-3 pb-2 pl-3 text-sm tracking-wide leading-relaxed rounded-md border-solid border border-[#52525b] border-opacity-25 h-[2.5rem] max-h-[2.5rem] max-w-[300px] shadow-none font-poppins font-normal focus:outline-none md:max-w-[none] md:col-span-2"
                         name="experience">
-                    <option value="">Select experience...</option>
+                    <option value="">Select experience</option>
                     @foreach(range(1, 20) as $i)
                         <option @if(($filters['experience'] ?? null) == $i) selected @endif value="{{ $i }}">{{ $i }}
                             years
@@ -49,14 +49,14 @@
                 </select>
                 <select class="w-full pt-2 pr-3 pb-2 pl-3 text-sm tracking-wide leading-relaxed rounded-md border-solid border border-[#52525b] border-opacity-25 h-[2.5rem] max-h-[2.5rem] max-w-[300px] shadow-none font-poppins font-normal focus:outline-none md:max-w-[none] md:col-span-2"
                         name="industry">
-                    <option value="">Select industry...</option>
+                    <option value="">Select industry</option>
                     @foreach($industries as $industry)
                         <option @if(($filters['industry'] ?? null) === $industry) selected @endif value="{{ $industry }}">{{ $industry }}</option>
                     @endforeach
                 </select>
                 <select class="w-full pt-2 pr-3 pb-2 pl-3 text-sm tracking-wide leading-relaxed rounded-md border-solid border border-[#52525b] border-opacity-25 h-[2.5rem] max-h-[2.5rem] max-w-[300px] shadow-none font-poppins font-normal focus:outline-none md:max-w-[none] md:col-span-2"
                         name="department">
-                    <option value="">Select department...</option>
+                    <option value="">Select department</option>
                     @foreach($departments as $department)
                         <option @if(($filters['department'] ?? null) === $department) selected @endif value="{{ $department }}">{{ $department }}</option>
                     @endforeach
