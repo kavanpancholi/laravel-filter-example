@@ -30,6 +30,8 @@ class CandidateProfile extends Model
         'functional_area',
         'address',
         'resume',
+        'current_company',
+        'current_department',
         'is_enabled',
     ];
 

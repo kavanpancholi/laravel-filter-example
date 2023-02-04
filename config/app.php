@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -266,5 +266,30 @@ return [
         'Fullstack (Balanced)',
         'Android',
         'iOS',
+    ],
+
+    'companies' => [
+        'Meta',
+        'Amazon',
+        'Netflix',
+        'Apple',
+        'Microsoft',
+        'Salesforce',
+        'IBM',
+        'SAP',
+        'Oracle',
+        'Delloite',
+        'Accenture',
+        'TCS',
+    ],
+
+    'departments' => [
+        'General Management',
+        'Marketing Department',
+        'Operations Department',
+        'Finance Department',
+        'Sales Department',
+        'Human Resource Department',
+        'Purchase Department',
     ]
 ];

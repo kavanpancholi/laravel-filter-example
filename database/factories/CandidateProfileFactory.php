@@ -37,6 +37,8 @@ class CandidateProfileFactory extends Factory
             'functional_area' => fake()->randomElement(config('app.area')),
             'address' => fake()->address(),
             'resume' => fake()->paragraph(),
+            'current_company' => fake()->randomElement(config('app.companies')),
+            'current_department' => fake()->randomElement(config('app.departments')),
             'is_enabled' => true,
         ];
     }

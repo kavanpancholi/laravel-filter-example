@@ -55,10 +55,24 @@
                     @endforeach
                 </select>
                 <select class="w-full pt-2 pr-3 pb-2 pl-3 text-sm tracking-wide leading-relaxed rounded-md border-solid border border-[#52525b] border-opacity-25 h-[2.5rem] max-h-[2.5rem] max-w-[300px] shadow-none font-poppins font-normal focus:outline-none md:max-w-[none] md:col-span-2"
-                        name="department">
-                    <option value="">Select department</option>
+                        name="functional_area">
+                    <option value="">Select functional area</option>
+                    @foreach($functionalAreas as $functionalArea)
+                        <option @if(($filters['functional_area'] ?? null) === $functionalArea) selected @endif value="{{ $functionalArea }}">{{ $functionalArea }}</option>
+                    @endforeach
+                </select>
+                <select class="w-full pt-2 pr-3 pb-2 pl-3 text-sm tracking-wide leading-relaxed rounded-md border-solid border border-[#52525b] border-opacity-25 h-[2.5rem] max-h-[2.5rem] max-w-[300px] shadow-none font-poppins font-normal focus:outline-none md:max-w-[none] md:col-span-2"
+                        name="current_company">
+                    <option value="">Select current company</option>
+                    @foreach($companies as $company)
+                        <option @if(($filters['current_company'] ?? null) === $company) selected @endif value="{{ $company }}">{{ $company }}</option>
+                    @endforeach
+                </select>
+                <select class="w-full pt-2 pr-3 pb-2 pl-3 text-sm tracking-wide leading-relaxed rounded-md border-solid border border-[#52525b] border-opacity-25 h-[2.5rem] max-h-[2.5rem] max-w-[300px] shadow-none font-poppins font-normal focus:outline-none md:max-w-[none] md:col-span-2"
+                        name="current_department">
+                    <option value="">Select current department</option>
                     @foreach($departments as $department)
-                        <option @if(($filters['department'] ?? null) === $department) selected @endif value="{{ $department }}">{{ $department }}</option>
+                        <option @if(($filters['current_department'] ?? null) === $department) selected @endif value="{{ $department }}">{{ $department }}</option>
                     @endforeach
                 </select>
                 <div class="w-full flex justify-end">
@@ -114,6 +128,12 @@
                     </span>
                     <span class="font-poppins text-[#71717a] text-opacity-100 font-light text-center text-xs">
                         Area: {{ $candidate->functional_area }}
+                    </span>
+                    <span class="font-poppins text-[#71717a] text-opacity-100 font-light text-center text-xs">
+                        Current Company: {{ $candidate->current_company }}
+                    </span>
+                    <span class="font-poppins text-[#71717a] text-opacity-100 font-light text-center text-xs">
+                        Current Department: {{ $candidate->current_department }}
                     </span>
                 </a>
             </div>

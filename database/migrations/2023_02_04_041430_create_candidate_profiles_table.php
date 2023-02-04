@@ -34,6 +34,8 @@ return new class extends Migration
             $table->string('functional_area')->nullable();
             $table->text('address')->nullable();
             $table->longText('resume')->nullable();
+            $table->longText('current_company')->nullable();
+            $table->longText('current_department')->nullable();
             $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });

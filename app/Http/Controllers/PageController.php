@@ -31,11 +31,19 @@ class PageController extends Controller
             })
             ->when(isset($filters['experience']), function ($query) use ($filters) {
                 $experience = $filters['experience'];
-                $query->whereRaw('work_exp_range_from - work_exp_range_to >= ?', [$experience]);
+                $query->whereRaw('work_exp_range_to - work_exp_range_from >= ?', [$experience]);
             })
-            ->when(isset($filters['department']), function ($query) use ($filters) {
-                $department = $filters['department'];
-                $query->where('functional_area', $department);
+            ->when(isset($filters['functional_area']), function ($query) use ($filters) {
+                $functionalArea = $filters['functional_area'];
+                $query->where('functional_area', $functionalArea);
+            })
+            ->when(isset($filters['current_department']), function ($query) use ($filters) {
+                $functionalArea = $filters['current_department'];
+                $query->where('current_department', $functionalArea);
+            })
+            ->when(isset($filters['current_company']), function ($query) use ($filters) {
+                $functionalArea = $filters['current_company'];
+                $query->where('current_company', $functionalArea);
             })
             ->when(isset($filters['industry']), function ($query) use ($filters) {
                 $industry = $filters['industry'];
@@ -45,14 +53,18 @@ class PageController extends Controller
 
         $locations = CandidateProfile::pluck('location');
         $industries = config('app.industries');
-        $departments = config('app.area');
+        $functionalAreas = config('app.area');
+        $companies = config('app.companies');
+        $departments = config('app.departments');
 
         return view('welcome', [
             'candidates' => $candidates,
             'locations' => $locations,
             'filters' => $filters,
             'industries' => $industries,
-            'departments' => $departments
+            'functionalAreas' => $functionalAreas,
+            'departments' => $departments,
+            'companies' => $companies,
         ]);
     }
 }
