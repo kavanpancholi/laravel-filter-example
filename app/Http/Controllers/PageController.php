@@ -19,11 +19,10 @@ class PageController extends Controller
                     ->orWhere('address', 'LIKE', "%$keyword%")
                     ->orWhere('key_skills', 'LIKE', "%$keyword%");
             })
-            ->when(isset($filters['min-price'], $filters['max-price']), function ($query) use ($filters) {
-                $minPrice = $filters['min-price'];
-                $maxPrice = $filters['max-price'];
-                $query->whereBetween('salary_range_from', [$minPrice, $maxPrice])
-                    ->orWhereBetween('salary_range_to', [$minPrice, $maxPrice]);
+            ->when(isset($filters['min_salary'], $filters['max_salary']), function ($query) use ($filters) {
+                $minPrice = $filters['min_salary'];
+                $maxPrice = $filters['max_salary'];
+                $query->whereBetween('expected_salary', [$minPrice, $maxPrice]);
             })
             ->when(isset($filters['location']), function ($query) use ($filters) {
                 $location = $filters['location'];
@@ -56,6 +55,7 @@ class PageController extends Controller
         $functionalAreas = config('app.area');
         $companies = config('app.companies');
         $departments = config('app.departments');
+        $salaryRanges = config('app.salary_range');
 
         return view('welcome', [
             'candidates' => $candidates,
@@ -65,6 +65,7 @@ class PageController extends Controller
             'functionalAreas' => $functionalAreas,
             'departments' => $departments,
             'companies' => $companies,
+            'salaryRanges' => $salaryRanges,
         ]);
     }
 }

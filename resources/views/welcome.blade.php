@@ -23,12 +23,20 @@
                        type="text" placeholder="Search by name" name="keyword" autocomplete="off" autofocus
                        value="{{ $filters['keyword'] ?? null }}">
                 <div class="sm:col-span-2 lg:grid lg:grid-cols-2 grid grid-cols-2 min-w-[200px] max-w-[200px] md:min-w-[100%]">
-                    <input class="w-full pt-2 pr-3 pb-2 pl-3 text-sm tracking-wide leading-relaxed border-solid border border-[#52525b] border-opacity-25 shadow-none placeholder-black placeholder-opacity-30 font-poppins font-normal focus:outline-none rounded-tl-md rounded-bl-md rounded-br-none rounded-tr-none md:max-w-[none] max-w-[none]"
-                           type="text" placeholder="Min price" value="{{ $filters['min-price'] ?? null }}"
-                           name="min-price" autocomplete="off">
-                    <input class="w-full pt-2 pr-3 pb-2 pl-3 text-sm tracking-wide leading-relaxed border-solid border border-[#52525b] border-opacity-25 shadow-none placeholder-black placeholder-opacity-30 font-poppins font-normal focus:outline-none rounded-tr-md rounded-br-md rounded-tl-none rounded-bl-none mt-0 mr-0 mb-0 -ml-px md:max-w-[none] max-w-[none]"
-                           type="text" placeholder="Max price" value="{{ $filters['max-price'] ?? null }}"
-                           name="max-price" autocomplete="off">
+                    <select class="w-full pt-2 pr-3 pb-2 pl-3 text-sm tracking-wide leading-relaxed border-solid border border-[#52525b] border-opacity-25 shadow-none placeholder-black placeholder-opacity-30 font-poppins font-normal focus:outline-none rounded-tl-md rounded-bl-md rounded-br-none rounded-tr-none md:max-w-[none] max-w-[none]"
+                            name="min_salary">
+                        <option value="" @if((!isset($filters['min_salary'])) || ($filters['min_salary'] ?? null) == null) selected @endif>Select min salary</option>
+                        @foreach($salaryRanges as $key => $value)
+                            <option @if(isset($filters['min_salary']) && $filters['min_salary'] == $key) selected @endif value="{{ $key }}">{{ $value }}</option>
+                        @endforeach
+                    </select>
+                    <select class="w-full pt-2 pr-3 pb-2 pl-3 text-sm tracking-wide leading-relaxed border-solid border border-[#52525b] border-opacity-25 shadow-none placeholder-black placeholder-opacity-30 font-poppins font-normal focus:outline-none rounded-tr-md rounded-br-md rounded-tl-none rounded-bl-none mt-0 mr-0 mb-0 -ml-px md:max-w-[none] max-w-[none]"
+                            name="max_salary">
+                        <option value="" @if((!isset($filters['min_salary'])) || ($filters['min_salary'] ?? null) == null) selected @endif>Select max salary</option>
+                        @foreach($salaryRanges as $key => $value)
+                            <option @if(isset($filters['max_salary']) && $filters['max_salary'] == $key) selected @endif value="{{ $key }}">{{ $value }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <select class="w-full pt-2 pr-3 pb-2 pl-3 text-sm tracking-wide leading-relaxed rounded-md border-solid border border-[#52525b] border-opacity-25 h-[2.5rem] max-h-[2.5rem] max-w-[300px] shadow-none font-poppins font-normal focus:outline-none md:max-w-[none] md:col-span-2"
                         name="location">
@@ -105,7 +113,7 @@
                          sizes="128px">
                     <h6 class="text-lg font-semibold m-0 font-poppins text-black text-opacity-100">{{ $candidate->name }}</h6>
                     <span class="font-poppins text-[#71717a] text-opacity-100 font-light text-center text-xs">
-                        ${{ $candidate->salary_range_from }} to ${{ $candidate->salary_range_to }} per month
+                        ₹{{ number_format($candidate->expected_salary, 2) }} per year
                     </span>
 
                     <span class="flex items-center mt-2 font-poppins text-[#71717a] text-opacity-100 font-light text-center text-xs">

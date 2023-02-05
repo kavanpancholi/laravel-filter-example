@@ -26,8 +26,7 @@ return new class extends Migration
             $table->integer('work_exp_range_from')->nullable();
             $table->integer('work_exp_range_to')->nullable();
             $table->string('salary_currency')->nullable();
-            $table->decimal('salary_range_from', 13)->nullable();
-            $table->decimal('salary_range_to', 13)->nullable();
+            $table->decimal('expected_salary', 13)->nullable();
             $table->string('location');
             $table->boolean('is_willing_to_relocate')->default(false);
             $table->string('industry')->nullable();
