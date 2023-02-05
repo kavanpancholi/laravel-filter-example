@@ -17,7 +17,7 @@ class PageController extends Controller
                 $query->where('name', 'LIKE', "%$keyword%")
                     ->orWhere('email', 'LIKE', "%$keyword%")
                     ->orWhere('address', 'LIKE', "%$keyword%")
-                    ->orWhere('key_skills', 'LIKE', "%$keyword%");
+                    ->orWhereRaw('LOWER(key_skills) LIKE ?', ["%$keyword%"]);
             })
             ->when(isset($filters['min_salary'], $filters['max_salary']), function ($query) use ($filters) {
                 $minPrice = $filters['min_salary'];
