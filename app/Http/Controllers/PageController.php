@@ -14,10 +14,11 @@ class PageController extends Controller
         $candidates = CandidateProfile::query()
             ->when(isset($filters['keyword']), function ($query) use ($filters) {
                 $keyword = $filters['keyword'];
+                $lowerKeyword = strtolower($keyword);
                 $query->where('name', 'LIKE', "%$keyword%")
                     ->orWhere('email', 'LIKE', "%$keyword%")
                     ->orWhere('address', 'LIKE', "%$keyword%")
-                    ->orWhereRaw('LOWER(key_skills) LIKE ?', ["%$keyword%"]);
+                    ->orWhereRaw('LOWER(key_skills) LIKE ?', ["%$lowerKeyword%"]);
             })
             ->when(isset($filters['min_salary'], $filters['max_salary']), function ($query) use ($filters) {
                 $minPrice = $filters['min_salary'];
